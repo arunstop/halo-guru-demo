@@ -2,20 +2,34 @@
 import { RouterView, RouterLink, useRoute } from "vue-router";
 import { ref } from "vue";
 import { Icon } from "@iconify/vue";
+import { computed } from "@vue/reactivity";
 
 const route = useRoute();
+const linkWithHeaders = ["/", "/appointment"];
+const showHeader = computed(() =>
+  linkWithHeaders.includes(route.path.toLowerCase())
+);
 </script>
 
 <template>
   <main class="flex flex-col bg-red-100 text-black relative">
-    <header class="p-4 flex items-center gap-2 sm:gap-3 md:gap-4 lg:gap-6">
+    {{ showHeader + "" }}
+
+    {{ route.path }}
+    <header
+      v-if="showHeader"
+      class="p-4 flex items-center gap-2 sm:gap-3 md:gap-4 lg:gap-6"
+    >
       <Icon icon="mdi:phone" />
-      <span class="text-xl font-bold">Halo Guru {{ route.path }}</span>
+      <span class="text-xl font-bold">Halo Guru</span>
       <div class="ml-auto">
         <Icon class="text-2xl" icon="mdi:search" />
       </div>
     </header>
-    <section class="h-12 bg-yellow-100 grid grid-cols-2 sticky top-0">
+    <section
+      v-if="showHeader"
+      class="h-12 bg-yellow-100 grid grid-cols-2 sticky top-0"
+    >
       <RouterLink
         to="/"
         class="grid place-content-center btn-primary btn normal-case"

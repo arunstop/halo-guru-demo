@@ -20,7 +20,7 @@ const msg = ref<string>("World");
   <div
     class="pointer-events-none [&>*]:pointer-events-auto flex fixed justify-end p-4 inset-x-0 bottom-0"
   >
-    <RouterLink to="/" class="btn btn-circle">
+    <RouterLink to="/appointment/add" class="btn btn-circle">
       <Icon class="text-3xl" icon="mdi:add" />
     </RouterLink>
   </div>
